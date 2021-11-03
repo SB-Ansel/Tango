@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -10,34 +11,38 @@ namespace Tango.Core
 {
     public class Main
     {
-        const int INTERVAL = 5 * 1000; // ms
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
-        public Main()
+        const int INTERVAL = 5 * 1000; // ms
+        bool isDebug = false;
+
+        public Main(bool debug = false)
         {
-            Console.WriteLine("Contructing the service...");
+            if (debug) toggleDebug();
+            Logger.Info("Contructing the service...");
         }
 
         ~Main()
         {
-            Console.WriteLine("Contructing the service...");
+            Logger.Info("Contructing the service...");
         }
 
         public void OnStart()
         {
-            Console.WriteLine("Starting the service...");
+            Logger.Info("Starting the service...");
 
             OnTick();
         }
 
         public void OnStop()
         {
-            Console.WriteLine("Stopping the service...");
+            Logger.Info("Stopping the service...");
 
         }
 
         public void OnTick()
         {
-            Console.WriteLine("Tick!");
+            Logger.Debug("Tick!");
 
             Thread.Sleep(INTERVAL);
             OnTick();
@@ -67,6 +72,14 @@ namespace Tango.Core
             {
                 Console.WriteLine("Could not launch the DelProf2: " + ex.Message);
             }
+        }
+
+        void toggleDebug()
+        {
+            isDebug = !isDebug;
+
+            LogManager.Configuration.Variables["myLevel"] = isDebug ? "Debug" : "Info";
+            LogManager.ReconfigExistingLoggers();
         }
 
     }

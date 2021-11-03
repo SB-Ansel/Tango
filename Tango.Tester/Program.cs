@@ -11,7 +11,7 @@ namespace Tango.Tester
         static Tango.Core.Main tangoCore;
         static void Main(string[] args)
         {
-            tangoCore = new Tango.Core.Main();
+            tangoCore = new Tango.Core.Main(debug:true);
 
             tangoCore.OnStart();
 
