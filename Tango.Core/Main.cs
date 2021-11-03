@@ -18,7 +18,7 @@ namespace Tango.Core
 
         public Main(bool debug = false)
         {
-            if (debug) toggleDebug();
+            if (debug) ToggleDebug();
             Logger.Info("Contructing the service...");
         }
 
@@ -74,7 +74,7 @@ namespace Tango.Core
             }
         }
 
-        void toggleDebug()
+        void ToggleDebug()
         {
             isDebug = !isDebug;
 
