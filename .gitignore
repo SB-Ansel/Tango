@@ -1,0 +1,10 @@
+﻿# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+**/obj
+**/bin
+**/*.zip
