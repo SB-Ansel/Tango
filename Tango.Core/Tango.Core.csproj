@@ -51,6 +51,8 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScheduleFile.cs" />
+    <Compile Include="ScheduleManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
